@@ -3,8 +3,10 @@ import { BsFacebook, BsInstagram, BsYoutube } from "react-icons/bs";
 
 const Footer = () => {
   return (
-    <div className="px-10 py-10 bg-[#CDC7F8]">
-      <div className="grid grid-cols-4 gap-4">
+    <div className="pt-10">
+      <div className="divider"></div>
+      <div>
+      <div className="grid lg:grid-cols-4 gap-4 px-10 py-5">
         <CompanyLogo isFooter={true}></CompanyLogo>
         <ul className="uppercase font-semibold">
           <li className="hover:underline cursor-pointer">About</li>
@@ -50,8 +52,8 @@ const Footer = () => {
         </div>
       </div>
       <div className="divider"></div>
-     <div className="space-y-4">
-     <div className="flex justify-between font-semibold">
+     <div className="space-y-4 px-10 pb-10">
+     <div className="lg:flex justify-between font-semibold">
         <h3>©2023 Elegant Edge Fashion School</h3>
         <p className="flex gap-6 cursor-pointer">
           Privacy Policy <span>Terms and Conditions</span>
@@ -63,6 +65,7 @@ const Footer = () => {
         <p>contact@elegantedge.com</p>
       </div>
      </div>
+      </div>
     </div>
   );
 };
