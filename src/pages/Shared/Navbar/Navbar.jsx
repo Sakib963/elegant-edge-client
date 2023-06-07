@@ -6,7 +6,7 @@ const Navbar = () => {
   const navOptions = (
     <>
       <li>
-        <Link>Home</Link>
+        <Link to={'/'}>Home</Link>
       </li>
       <li>
         <Link>Instructors</Link>
@@ -49,7 +49,7 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navOptions}</ul>
       </div>
       <div className="navbar-end">
-        <Link>
+        <Link to={'/login'}>
           <button className="flex gap-2 items-center bg-[#CDC7F8] px-3 py-2 font-semibold rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-[#A69BFB] duration-300">
             <BiLogIn className="text-2xl" />
             Login
