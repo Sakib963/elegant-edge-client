@@ -5,3 +5,22 @@
 body{
     font-family: 'Lato', sans-serif;
 }
+
+.slider-1{
+    background-image: url('/src/assets/images/slider-1.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.slider-2{
+    background-image: url('/src/assets/images/slider-2.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+.slider-3{
+    background-image: url('/src/assets/images/slider-3.png');
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
