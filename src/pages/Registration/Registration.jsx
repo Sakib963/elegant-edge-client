@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import { BiErrorCircle, BiLogIn } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import registrationPic from "../../assets/images/registration.svg";
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Registration = () => {
   const [open, setOpen] = useState(0);
@@ -13,6 +15,9 @@ const Registration = () => {
   const [retypeOpen, setRetypeOpen] = useState(0);
   const [retypeInputType, setRetypeInputType] = useState("password");
   const [notMatchError, setNotMatchError] = useState(1);
+
+  const navigate = useNavigate();
+  const { createUser, updateUserProfile } = useContext(AuthContext);
 
   const handleRetypeToggle = () => {
     if (retypeOpen == 0) {
@@ -46,6 +51,7 @@ const Registration = () => {
     reset,
     formState: { errors },
   } = useForm();
+
   const onSubmit = (data) => {
     setNotMatchError(1);
     if (data.password !== data.retypePassword) {
@@ -53,7 +59,47 @@ const Registration = () => {
       return;
     }
     console.log(data);
-    reset();
+
+    createUser(data.email, data.password)
+      .then((res) => {
+        const loggedUser = res.user;
+
+        updateUserProfile(data.name, data.photo)
+          .then(() => {
+            const savedUser = {
+              name: data.name,
+              email: data.email,
+              role: "student",
+            };
+            fetch("http://localhost:5000/users", {
+              method: "POST",
+              headers: { "content-type": "application/json" },
+              body: JSON.stringify(savedUser),
+            })
+              .then((res) => res.json())
+              .then((data) => {
+                if (data.insertedId) {
+                  reset();
+                }
+              });
+            Swal.fire({
+              position: "top-end",
+              icon: "success",
+              title: "Signed Up Successfully",
+              showConfirmButton: false,
+              timer: 1500,
+            });
+
+            navigate("/");
+          })
+          .catch((error) => {
+            console.log(error);
+          });
+        console.log(loggedUser);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
   return (
     <div className="grid lg:grid-cols-2 gap-4 pt-36">
