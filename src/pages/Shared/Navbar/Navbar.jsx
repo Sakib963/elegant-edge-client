@@ -1,23 +1,41 @@
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import CompanyLogo from "../../../components/CompanyLogo";
-import { BiLogIn } from "react-icons/bi";
+import { BiLogIn, BiLogOut } from "react-icons/bi";
+import { useContext } from "react";
+import { AuthContext } from "../../../providers/AuthProvider";
+import avatarIcon from "../../../assets/images/avatar-icon.png";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log(user);
+  const handleLogout = () => {
+    logOut()
+      .then(() => {})
+      .catch((error) => console.log(error));
+  };
   const navOptions = (
     <>
       <li>
-        <Link to={'/'}>Home</Link>
+        <NavLink to={'/'} className={({isActive}) => isActive ? "active-link" : ""}>
+          Home
+        </NavLink>
       </li>
       <li>
-        <Link>Instructors</Link>
+      <NavLink to={'/instructors'} className={({isActive}) => isActive ? "active-link" : ""}>
+          Instructors
+        </NavLink>
       </li>
       <li>
-        <Link>Classes</Link>
+      <NavLink to={'/classes'} className={({isActive}) => isActive ? "active-link" : ""}>
+          Classes
+        </NavLink>
       </li>
     </>
   );
   return (
     <div className="navbar lg:px-10 fixed z-10 bg-white border-b-[1px] border-black">
+      <Tooltip id="my-tooltip" />
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -49,12 +67,53 @@ const Navbar = () => {
         <ul className="menu menu-horizontal px-1">{navOptions}</ul>
       </div>
       <div className="navbar-end">
-        <Link to={'/login'}>
-          <button className="flex gap-2 items-center bg-[#CDC7F8] px-3 py-2 font-semibold rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-[#A69BFB] duration-300">
-            <BiLogIn className="text-2xl" />
-            Login
-          </button>
-        </Link>
+        {user ? (
+          <div className="flex">
+            {user?.photoURL ? (
+              <div className="avatar placeholder">
+                <div className="bg-[#ff4a22] text-neutral-content rounded-full w-12">
+                  <img
+                    src={user.photoURL}
+                    alt="user photo"
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content={
+                      user.displayName ? user.displayName : "No Name Added"
+                    }
+                  />
+                </div>
+              </div>
+            ) : (
+              <div className="avatar placeholder">
+                <div className="bg-[#ff4a22] text-neutral-content rounded-full w-12">
+                  <img
+                    src={avatarIcon}
+                    alt=""
+                    className="p-2"
+                    data-tooltip-id="my-tooltip"
+                    data-tooltip-content={
+                      user.displayName ? user.displayName : "No Name Added"
+                    }
+                  />
+                </div>
+              </div>
+            )}
+
+            <button
+              onClick={handleLogout}
+              className="ms-3 flex gap-2 items-center bg-[#CDC7F8] px-3 py-2 font-semibold rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-[#A69BFB] duration-300"
+            >
+              <BiLogOut className="text-2xl" />
+              Logout
+            </button>
+          </div>
+        ) : (
+          <Link to={"/login"}>
+            <button className="flex gap-2 items-center bg-[#CDC7F8] px-3 py-2 font-semibold rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-[#A69BFB] duration-300">
+              <BiLogIn className="text-2xl" />
+              Login
+            </button>
+          </Link>
+        )}
       </div>
     </div>
   );

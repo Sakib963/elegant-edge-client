@@ -24,3 +24,8 @@ body{
     background-size: cover;
     background-repeat: no-repeat;
 }
+
+.active-link{
+    color: #A69BFB;
+    text-decoration: underline;
+}

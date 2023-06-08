@@ -1,13 +1,18 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import loginPic from "../../assets/images/sign_up.svg";
 import { useForm } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { BiErrorCircle, BiLogIn } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
+import { AuthContext } from "../../providers/AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
+  const { loginUser } = useContext(AuthContext);
+  const navigate = useNavigate();
+  const from = location.state?.from?.pathname || "/";
   const [open, setOpen] = useState(0);
   const [inputType, setInputType] = useState("password");
   /* Handling See Password */
@@ -31,7 +36,23 @@ const Login = () => {
   } = useForm();
   const onSubmit = (data) => {
     console.log(data);
-    reset();
+    loginUser(data.email, data.password)
+      .then((res) => {
+        const loggedUser = res.user;
+        console.log(loggedUser);
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Logged In Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        navigate(from, { replace: true });
+        reset();
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   return (
