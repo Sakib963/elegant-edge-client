@@ -5,6 +5,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { BiErrorCircle, BiLogIn } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 
 const Login = () => {
   const [open, setOpen] = useState(0);
@@ -29,17 +30,22 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data)
+    console.log(data);
     reset();
   };
 
   return (
-    <div className="grid lg:grid-cols-2 pt-36">
+    <div className="grid lg:grid-cols-2 gap-4 pt-36">
+      <Helmet>
+        <title>Login | Elegant Edge Fashion School</title>
+      </Helmet>
       <div className="space-y-4">
-        <h3 className="text-5xl font-bold text-center">Please Login</h3>
+        <h3 className="lg:text-5xl text-3xl font-bold text-center">
+          Please Login
+        </h3>
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="border p-5 w-2/4 mx-auto space-y-3 rounded-lg"
+          className="border p-5 lg:w-2/4 mx-10 lg:mx-auto space-y-3 rounded-lg"
         >
           <div className="space-y-1">
             <p className="font-semibold">Email Address</p>
@@ -68,8 +74,7 @@ const Login = () => {
                   required: true,
                   minLength: 6,
                   maxLength: 20,
-                  pattern:
-                    /^(?=.*?[A-Z])(?=.*?[#?!@$%^&*-]).{6,}$/,
+                  pattern: /^(?=.*?[A-Z])(?=.*?[#?!@$%^&*-]).{6,}$/,
                 })}
                 placeholder="Password (Must have to more than 6 characters)"
                 id="password"
@@ -87,19 +92,26 @@ const Login = () => {
               </div>
             </div>
             {errors.password?.type === "required" && (
-              <p className="text-red-600 flex items-center gap-1"><BiErrorCircle /> Password is required</p>
+              <p className="text-red-600 flex items-center gap-1">
+                <BiErrorCircle /> Password is required
+              </p>
             )}
             {errors.password?.type === "minLength" && (
-              <p className="text-red-600 flex items-center gap-1"><BiErrorCircle /> Password must be 6 characters.</p>
+              <p className="text-red-600 flex items-center gap-1">
+                <BiErrorCircle /> Password must be 6 characters.
+              </p>
             )}
             {errors.password?.type === "maxLength" && (
               <p className="text-red-600 flex items-center gap-1">
-               <BiErrorCircle /> Password must be less or equal than 20 characters.
+                <BiErrorCircle /> Password must be less or equal than 20
+                characters.
               </p>
             )}
             {errors.password?.type === "pattern" && (
-              <p className="text-red-600 flex items-baseline gap-1"><BiErrorCircle /> 
-                Password must contain at least one upppercase and one special character.
+              <p className="text-red-600 flex items-baseline gap-1">
+                <BiErrorCircle />
+                Password must contain at least one upppercase and one special
+                character.
               </p>
             )}
           </div>
@@ -109,7 +121,7 @@ const Login = () => {
           </button>
           <p>
             Dont&apos;t have an account?{" "}
-            <Link to="/register" className="underline text-[#8171FA]">
+            <Link to="/register" className="underline text-[#8171FA] ml-1">
               Register
             </Link>
           </p>
