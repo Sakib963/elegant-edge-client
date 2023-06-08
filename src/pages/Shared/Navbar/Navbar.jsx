@@ -17,20 +17,39 @@ const Navbar = () => {
   const navOptions = (
     <>
       <li>
-        <NavLink to={'/'} className={({isActive}) => isActive ? "active-link" : ""}>
+        <NavLink
+          to={"/"}
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
           Home
         </NavLink>
       </li>
       <li>
-      <NavLink to={'/instructors'} className={({isActive}) => isActive ? "active-link" : ""}>
+        <NavLink
+          to={"/instructors"}
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
           Instructors
         </NavLink>
       </li>
       <li>
-      <NavLink to={'/classes'} className={({isActive}) => isActive ? "active-link" : ""}>
+        <NavLink
+          to={"/classes"}
+          className={({ isActive }) => (isActive ? "active-link" : "")}
+        >
           Classes
         </NavLink>
       </li>
+      {user && (
+        <li>
+          <NavLink
+            to={"/dashboard/selectedclasses"}
+            className={({ isActive }) => (isActive ? "active-link" : "")}
+          >
+            Dashboard
+          </NavLink>
+        </li>
+      )}
     </>
   );
   return (
