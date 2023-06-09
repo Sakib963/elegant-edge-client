@@ -90,7 +90,7 @@ const Navbar = () => {
           <div className="flex">
             {user?.photoURL ? (
               <div className="avatar placeholder">
-                <div className="bg-[#ff4a22] text-neutral-content rounded-full w-12">
+                <div className="bg-[#CDC7F8] text-neutral-content rounded-full w-12">
                   <img
                     src={user.photoURL}
                     alt="user photo"
@@ -103,7 +103,7 @@ const Navbar = () => {
               </div>
             ) : (
               <div className="avatar placeholder">
-                <div className="bg-[#ff4a22] text-neutral-content rounded-full w-12">
+                <div className="bg-[#CDC7F8] text-neutral-content rounded-full w-12">
                   <img
                     src={avatarIcon}
                     alt=""
