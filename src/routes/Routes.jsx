@@ -9,6 +9,7 @@ import SelectedClasses from "../pages/Dashboard/SelectedClasses/SelectedClasses"
 import Instructors from "../pages/Instructors/Instructors";
 import Classes from "../pages/Classes/Classes";
 import SingleInstructor from "../pages/SingleInstructor/SingleInstructor";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -34,7 +35,7 @@ const router = createBrowserRouter([
             },
             {
                 path: '/instructors/:id',
-                element: <SingleInstructor></SingleInstructor>,
+                element: <PrivateRoute><SingleInstructor></SingleInstructor></PrivateRoute>,
                 loader: ({params}) => fetch(`http://localhost:5000/instructors/${params.id}`)
             },
             {

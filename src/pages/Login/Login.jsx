@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { BiErrorCircle, BiLogIn } from "react-icons/bi";
 import { FcGoogle } from "react-icons/fc";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
@@ -12,7 +12,10 @@ import Swal from "sweetalert2";
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
   const navigate = useNavigate();
+  const location = useLocation();
   const from = location.state?.from?.pathname || "/";
+  console.log(from)
+  console.log(location.state)
   const [open, setOpen] = useState(0);
   const [inputType, setInputType] = useState("password");
   /* Handling See Password */
