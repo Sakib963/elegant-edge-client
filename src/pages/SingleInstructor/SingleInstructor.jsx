@@ -2,8 +2,8 @@ import { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useState } from "react";
-import ClassDetailsCard from "../Classes/ClassDetailsCard";
 import instructorBG from "../../assets/images/instructor-bg.svg";
+import ClassesCard from "../Home/PopularClasses/ClassesCard";
 
 const SingleInstructor = () => {
   const { name, image, email, classes } = useLoaderData();
@@ -40,10 +40,10 @@ const SingleInstructor = () => {
       <h3 className="pt-10 text-2xl lg:text-5xl font-semibold text-center">Classes of {name}</h3>
       <div className="grid lg:grid-cols-3 pt-10 lg:mx-auto lg:w-3/4 col-span-3">
         {classesByInstructor.map((classByInstructor) => (
-          <ClassDetailsCard
+          <ClassesCard
             key={classByInstructor._id}
             singleClass={classByInstructor}
-          ></ClassDetailsCard>
+          ></ClassesCard>
         ))}
       </div>
     </div>

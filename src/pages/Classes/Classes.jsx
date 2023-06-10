@@ -2,8 +2,8 @@ import { useState } from "react";
 import { Typewriter } from "react-simple-typewriter";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect } from "react";
-import ClassDetailsCard from "./ClassDetailsCard";
 import classBG from '../../assets/images/classes-bg.svg'
+import ClassesCard from "../Home/PopularClasses/ClassesCard";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
@@ -64,10 +64,10 @@ const Classes = () => {
       </h3>
       <div className="grid lg:grid-cols-3 gap-5 lg:w-3/4 mx-auto mt-10">
         {classes.map((singleClass) => (
-          <ClassDetailsCard
+          <ClassesCard
             key={singleClass._id}
             singleClass={singleClass}
-          ></ClassDetailsCard>
+          ></ClassesCard>
         ))}
       </div>
     </div>
