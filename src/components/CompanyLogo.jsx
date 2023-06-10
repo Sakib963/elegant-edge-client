@@ -2,7 +2,6 @@ import logo from "/elegant-logo.svg";
 
 const CompanyLogo = (isFooter) => {
   if (isFooter) {
-    console.log('Footer')
     return (
       <div className="flex justify-start">
         <div className="flex h-4 lg:h-12 items-center justify-center gap-2">
