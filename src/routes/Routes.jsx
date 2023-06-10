@@ -12,50 +12,57 @@ import SingleInstructor from "../pages/SingleInstructor/SingleInstructor";
 import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
-    {
-        path: '/',
-        element: <Main></Main>,
-        errorElement: <ErrorPage></ErrorPage>,
-        children: [
-            {
-                path: '/',
-                element: <Home></Home>,
-            },
-            {
-                path: '/login',
-                element: <Login></Login>
-            },
-            {
-                path: '/register',
-                element: <Registration></Registration>,
-            },
-            {
-                path: '/instructors',
-                element: <Instructors></Instructors>
-            },
-            {
-                path: '/instructors/:id',
-                element: <PrivateRoute><SingleInstructor></SingleInstructor></PrivateRoute>,
-                loader: ({params}) => fetch(`http://localhost:5000/instructors/${params.id}`)
-            },
-            {
-                path: '/classes',
-                element: <Classes></Classes>
-            }
-        ]
-    },
-    {
-        path: "/dashboard",
-        element:  <Dashboard></Dashboard>,
-        children: [
-            {
-                path: 'selectedclasses',
-                element: <SelectedClasses></SelectedClasses>
-            }
-        ]
-    }
-])
-
-
+  {
+    path: "/",
+    element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
+    children: [
+      {
+        path: "/",
+        element: <Home></Home>,
+      },
+      {
+        path: "/login",
+        element: <Login></Login>,
+      },
+      {
+        path: "/register",
+        element: <Registration></Registration>,
+      },
+      {
+        path: "/instructors",
+        element: <Instructors></Instructors>,
+      },
+      {
+        path: "/instructors/:id",
+        element: (
+          <PrivateRoute>
+            <SingleInstructor></SingleInstructor>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/instructors/${params.id}`),
+      },
+      {
+        path: "/classes",
+        element: <Classes></Classes>,
+      },
+    ],
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRoute>
+        <Dashboard></Dashboard>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "selectedclasses",
+        element: <SelectedClasses></SelectedClasses>,
+      },
+    ],
+  },
+]);
 
 export default router;

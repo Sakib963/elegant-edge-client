@@ -5,13 +5,22 @@ import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import avatarIcon from "../../../assets/images/avatar-icon.png";
 import { Tooltip } from "react-tooltip";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   console.log(user);
   const handleLogout = () => {
     logOut()
-      .then(() => {})
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Logged Out Successfully",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+      })
       .catch((error) => console.log(error));
   };
   const navOptions = (
