@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { GrAddCircle } from "react-icons/gr";
+import { MdDownloadDone } from "react-icons/md";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
@@ -19,7 +20,10 @@ const ClassesCard = ({ singleClass }) => {
 
   const { user } = useContext(AuthContext);
   const navigate = useNavigate();
-  const [, refetch] = useSelectedClass(); 
+  const [selectedClass, refetch] = useSelectedClass();
+
+  const disabled = selectedClass.find((item) => item.classID === _id);
+  const seatNotEmpty = available_seats === 0;
 
   const handleSelectClass = () => {
     if (user) {
@@ -41,11 +45,11 @@ const ClassesCard = ({ singleClass }) => {
         .then((res) => res.json())
         .then((data) => {
           if (data.insertedId) {
-            refetch(); 
+            refetch();
             Swal.fire({
               position: "top-end",
               icon: "success",
-              title: "Added to Cart",
+              title: "Class is Selected.",
               showConfirmButton: false,
               timer: 1500,
             });
@@ -67,7 +71,13 @@ const ClassesCard = ({ singleClass }) => {
     }
   };
   return (
-    <div className="space-y-3 bg-gradient-to-b to-[#C3AAC3] from-[#B2B5E0] rounded-lg p-10">
+    <div
+      className={
+        seatNotEmpty
+          ? "space-y-3 bg-red-500 rounded-lg p-10 text-white"
+          : "space-y-3 bg-gradient-to-b to-[#C3AAC3] from-[#B2B5E0] rounded-lg p-10"
+      }
+    >
       <img className="mx-auto rounded-lg" src={image} alt="Class Image" />
 
       <div className="space-y-2">
@@ -86,11 +96,17 @@ const ClassesCard = ({ singleClass }) => {
         <div className="flex justify-center">
           <Link>
             <button
+              disabled={disabled || seatNotEmpty}
               onClick={handleSelectClass}
               className="flex gap-2 items-center border px-3 py-2 font-semibold rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-[#CDC7F8] duration-300"
             >
-              <GrAddCircle className="text-2xl" />
-              Enroll Now
+              {disabled ? (
+                <MdDownloadDone className="text-2xl" />
+              ) : (
+                <GrAddCircle className="text-2xl" />
+              )}
+
+              {disabled ? "Selected" : "Enroll Now"}
             </button>
           </Link>
         </div>
