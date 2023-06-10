@@ -7,7 +7,8 @@ import Registration from "../pages/Registration/Registration";
 import Dashboard from "../layout/Dashboard";
 import SelectedClasses from "../pages/Dashboard/SelectedClasses/SelectedClasses";
 import Instructors from "../pages/Instructors/Instructors";
-
+import Classes from "../pages/Classes/Classes";
+import SingleInstructor from "../pages/SingleInstructor/SingleInstructor";
 
 const router = createBrowserRouter([
     {
@@ -30,6 +31,15 @@ const router = createBrowserRouter([
             {
                 path: '/instructors',
                 element: <Instructors></Instructors>
+            },
+            {
+                path: '/instructors/:id',
+                element: <SingleInstructor></SingleInstructor>,
+                loader: ({params}) => fetch(`http://localhost:5000/instructors/${params.id}`)
+            },
+            {
+                path: '/classes',
+                element: <Classes></Classes>
             }
         ]
     },

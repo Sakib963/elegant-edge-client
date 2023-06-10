@@ -1,8 +1,9 @@
 import { GrAddCircle } from "react-icons/gr";
 import { Link } from "react-router-dom";
 
-const ClassesCard = ({ singleClass }) => {
-  const { _id, image, name, instructor, available_seats, total_students } =
+const ClassDetailsCard = ({ singleClass }) => {
+    console.log(singleClass)
+  const { _id, image, name, instructor, available_seats, total_students, price } =
     singleClass;
   return (
     <div className="space-y-3 bg-gradient-to-b to-[#C3AAC3] from-[#B2B5E0] rounded-lg p-10">
@@ -13,10 +14,11 @@ const ClassesCard = ({ singleClass }) => {
         <p>
           By <span className="font-semibold">{instructor}</span>
         </p>
-        <div className="lg:flex justify-between items-center pb-5">
+        <div className="lg:flex justify-between items-center">
           <p>Available Seats: {available_seats}</p>
           <p>Total Students: {total_students}</p>
         </div>
+        <p className="font-semibold pb-5">Price: <span>{price}</span></p>
 
         <div className="flex justify-center">
           <Link to={`/classes/${_id}`}>
@@ -31,4 +33,4 @@ const ClassesCard = ({ singleClass }) => {
   );
 };
 
-export default ClassesCard;
+export default ClassDetailsCard;
