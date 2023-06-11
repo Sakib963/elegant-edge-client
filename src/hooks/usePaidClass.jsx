@@ -9,9 +9,9 @@ const usePaidClass = () => {
 
   const { refetch: paidRefetch, data: paidClass = [] } = useQuery({
     queryKey: ["payment-history", user?.email],
-    enabled: !loading,
+    enabled: !!user && !loading,
     queryFn: async () => {
-      if (user.email) {
+      if (user?.email) {
         const res = await axiosSecure(`/payment-history?email=${user?.email}`);
         return res.data;
       }

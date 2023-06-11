@@ -9,9 +9,9 @@ const useEnrolledClass = () => {
 
   const { refetch: enrolledRefetch, data: enrolledClass = [] } = useQuery({
     queryKey: ["payments", user?.email],
-    enabled: !loading,
+    enabled: !!user && !loading,
     queryFn: async () => {
-      if (user.email) {
+      if (user?.email) {
         const res = await axiosSecure(`/payments?email=${user?.email}`);
         return res.data;
       }
