@@ -11,6 +11,7 @@ import Classes from "../pages/Classes/Classes";
 import SingleInstructor from "../pages/SingleInstructor/SingleInstructor";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
 
 const router = createBrowserRouter([
   {
@@ -63,11 +64,15 @@ const router = createBrowserRouter([
         element: <SelectedClasses></SelectedClasses>,
       },
       {
-        path: 'payment/:id',
+        path: "payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/selectclass/${params.id}`),
-      }
+      },
+      {
+        path: "enrolledclasses",
+        element: <EnrolledClasses></EnrolledClasses>,
+      },
     ],
   },
 ]);
