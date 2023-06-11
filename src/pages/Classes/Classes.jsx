@@ -12,7 +12,6 @@ const Classes = () => {
     axiosSecure
       .get("/classes")
       .then((res) => {
-        console.log(res.data);
         setClasses(res.data);
       })
       .catch((error) => {

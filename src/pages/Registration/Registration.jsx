@@ -58,11 +58,9 @@ const Registration = () => {
       setNotMatchError(0);
       return;
     }
-    console.log(data);
 
     createUser(data.email, data.password)
-      .then((res) => {
-        const loggedUser = res.user;
+      .then(() => {
 
         updateUserProfile(data.name, data.photo)
           .then(() => {
@@ -95,7 +93,6 @@ const Registration = () => {
           .catch((error) => {
             console.log(error);
           });
-        console.log(loggedUser);
       })
       .catch((error) => {
         console.log(error);

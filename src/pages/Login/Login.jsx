@@ -14,8 +14,6 @@ const Login = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
-  console.log(from)
-  console.log(location.state)
   const [open, setOpen] = useState(0);
   const [inputType, setInputType] = useState("password");
   /* Handling See Password */
@@ -38,11 +36,8 @@ const Login = () => {
     formState: { errors },
   } = useForm();
   const onSubmit = (data) => {
-    console.log(data);
     loginUser(data.email, data.password)
-      .then((res) => {
-        const loggedUser = res.user;
-        console.log(loggedUser);
+      .then(() => {
         Swal.fire({
           position: "top-end",
           icon: "success",

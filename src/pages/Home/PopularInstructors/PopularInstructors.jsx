@@ -11,7 +11,6 @@ const PopularInstructors = () => {
     axiosSecure
       .get("/instructors")
       .then((res) => {
-        console.log(res.data);
         setInstructors(res.data);
       })
       .catch((error) => {

@@ -12,6 +12,7 @@ import SingleInstructor from "../pages/SingleInstructor/SingleInstructor";
 import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
+import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
 
 const router = createBrowserRouter([
   {
@@ -73,6 +74,10 @@ const router = createBrowserRouter([
         path: "enrolledclasses",
         element: <EnrolledClasses></EnrolledClasses>,
       },
+      {
+        path: "paymenthistory",
+        element: <PaymentHistory></PaymentHistory>
+      }
     ],
   },
 ]);

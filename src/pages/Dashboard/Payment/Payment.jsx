@@ -9,10 +9,8 @@ const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
 
 const Payment = () => {
   const item = useLoaderData();
-  console.log(item);
 
   const total = parseFloat(item.price.toFixed(2));
-  console.log("total:", total);
 
   return (
     <div className="text-center mt-20 lg:mt-10">
@@ -43,6 +41,7 @@ const Payment = () => {
           total={total}
           courseId={item.classID}
           selectedClassId={item._id}
+          courseName={item.name}
         />
       </Elements>
     </div>

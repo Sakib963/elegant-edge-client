@@ -28,7 +28,6 @@ const ClassesCard = ({ singleClass }) => {
   const selected = selectedClass.find((item) => item.classID === _id);
   const seatNotEmpty = available_seats === 0;
   const enrolled = enrolledClass.find((item) => item._id === _id);
-  console.log(enrolledClass);
 
   const handleSelectClass = () => {
     if (user) {
@@ -41,7 +40,6 @@ const ClassesCard = ({ singleClass }) => {
         image,
         userEmail: user.email,
       };
-      console.log(selectedClass);
       fetch("http://localhost:5000/selectclass", {
         method: "POST",
         headers: { "content-type": "application/json" },

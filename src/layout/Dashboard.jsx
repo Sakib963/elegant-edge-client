@@ -54,7 +54,7 @@ const Dashboard = () => {
       </li>
       <li>
         <NavLink
-          to={"/dashboard/payment"}
+          to={"/dashboard/paymenthistory"}
           className={({ isActive }) => (isActive ? "active-link" : "")}
         >
           <AiOutlineDollar className="text-lg" />

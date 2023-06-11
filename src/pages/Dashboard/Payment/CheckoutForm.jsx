@@ -9,7 +9,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 
-const CheckoutForm = ({ total, courseId, selectedClassId }) => {
+const CheckoutForm = ({ total, courseId, selectedClassId, courseName }) => {
   const { user } = useContext(AuthContext);
 
   const stripe = useStripe();
@@ -26,7 +26,6 @@ const CheckoutForm = ({ total, courseId, selectedClassId }) => {
       axiosSecure
         .post("/create-payment-intent", { price: total })
         .then((res) => {
-          console.log(res.data.clientSecret);
           setClientSecret(res.data.clientSecret);
         });
     }
@@ -88,11 +87,11 @@ const CheckoutForm = ({ total, courseId, selectedClassId }) => {
         transactionId: paymentIntent.id,
         price: total,
         courseId,
+        courseName: courseName,
         selectedClassId,
         date: new Date(),
       };
       axiosSecure.post("/payments", payment).then((res) => {
-        console.log(res.data);
         if (res.data.insertResult.insertedId) {
           // Display Confirm
           Swal.fire({
