@@ -7,8 +7,8 @@ const useEnrolledClass = () => {
   const { user, loading } = useContext(AuthContext);
   const [axiosSecure] = useAxiosSecure();
 
-  const { refetch, data: enrolledClass = [] } = useQuery({
-    queryKey: ["selectclass", user?.email],
+  const { refetch: enrolledRefetch, data: enrolledClass = [] } = useQuery({
+    queryKey: ["payments", user?.email],
     enabled: !loading,
     queryFn: async () => {
       if (user.email) {
@@ -19,7 +19,7 @@ const useEnrolledClass = () => {
     },
   });
 
-  return [enrolledClass, refetch];
+  return [enrolledClass, enrolledRefetch];
 };
 
 export default useEnrolledClass;
