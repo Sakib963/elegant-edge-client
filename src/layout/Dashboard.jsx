@@ -7,12 +7,18 @@ import {
   AiOutlineDollar,
   AiOutlineUsergroupDelete,
   AiOutlineProject,
+  AiOutlineVideoCameraAdd,
 } from "react-icons/ai";
 import CompanyLogo from "../components/CompanyLogo";
 import { BiLogOut } from "react-icons/bi";
+import { SiGoogleclassroom } from "react-icons/si";
+import { FaUsersCog } from "react-icons/fa";
+import { MdManageHistory } from "react-icons/md";
 import { useContext } from "react";
 import { AuthContext } from "../providers/AuthProvider";
 import Swal from "sweetalert2";
+import useAdmin from "../hooks/useAdmin";
+import useInstructor from "../hooks/useInstructor";
 
 const Dashboard = () => {
   const { logOut } = useContext(AuthContext);
@@ -29,38 +35,87 @@ const Dashboard = () => {
       })
       .catch((error) => console.log(error));
   };
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
+
   const navOptions = (
     <>
       <li>
         <CompanyLogo />
       </li>
-      <li>
-        <NavLink
-          to={"/dashboard/selectedclasses"}
-          className={({ isActive }) => (isActive ? "active-link" : "")}
-        >
-          <AiOutlineSelect className="text-lg" />
-          Selected Classes
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={"/dashboard/enrolledclasses"}
-          className={({ isActive }) => (isActive ? "active-link" : "")}
-        >
-          <AiOutlineEnter className="text-lg" />
-          Enrolled Classes
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to={"/dashboard/paymenthistory"}
-          className={({ isActive }) => (isActive ? "active-link" : "")}
-        >
-          <AiOutlineDollar className="text-lg" />
-          Payment
-        </NavLink>
-      </li>
+      {isAdmin ? (
+        <>
+          <li>
+            <NavLink
+              to={"/dashboard/manageclasses"}
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              <MdManageHistory className="text-lg" />
+              Manage Classes
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/dashboard/manageusers"}
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              <FaUsersCog className="text-lg" />
+              Manage Users
+            </NavLink>
+          </li>
+        </>
+      ) : isInstructor ? (
+        <>
+          <li>
+            <NavLink
+              to={"/dashboard/addaclass"}
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              <AiOutlineVideoCameraAdd className="text-lg" />
+              Add A Class
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/dashboard/myclasses"}
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              <SiGoogleclassroom className="text-lg" />
+              My Classes
+            </NavLink>
+          </li>
+        </>
+      ) : (
+        <>
+          <li>
+            <NavLink
+              to={"/dashboard/selectedclasses"}
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              <AiOutlineSelect className="text-lg" />
+              Selected Classes
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/dashboard/enrolledclasses"}
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              <AiOutlineEnter className="text-lg" />
+              Enrolled Classes
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to={"/dashboard/paymenthistory"}
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              <AiOutlineDollar className="text-lg" />
+              Payment
+            </NavLink>
+          </li>
+        </>
+      )}
       <div className="divider"></div>
       <>
         <li>

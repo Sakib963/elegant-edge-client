@@ -6,9 +6,13 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import avatarIcon from "../../../assets/images/avatar-icon.png";
 import { Tooltip } from "react-tooltip";
 import Swal from "sweetalert2";
+import useAdmin from "../../../hooks/useAdmin";
+import useInstructor from "../../../hooks/useInstructor";
 
 const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
+  const [isAdmin] = useAdmin();
+  const [isInstructor] = useInstructor();
   const handleLogout = () => {
     logOut()
       .then(() => {
@@ -48,16 +52,35 @@ const Navbar = () => {
           Classes
         </NavLink>
       </li>
-      {user && (
-        <li>
-          <NavLink
-            to={"/dashboard/selectedclasses"}
-            className={({ isActive }) => (isActive ? "active-link" : "")}
-          >
-            Dashboard
-          </NavLink>
-        </li>
-      )}
+      {user &&
+        (isAdmin ? (
+          <li>
+            <NavLink
+              to={"/dashboard/manageclasses"}
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              Dashboard
+            </NavLink>
+          </li>
+        ) : isInstructor ? (
+          <li>
+            <NavLink
+              to={"/dashboard/addaclass"}
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              Dashboard
+            </NavLink>
+          </li>
+        ) : (
+          <li>
+            <NavLink
+              to={"/dashboard/selectedclasses"}
+              className={({ isActive }) => (isActive ? "active-link" : "")}
+            >
+              Dashboard
+            </NavLink>
+          </li>
+        ))}
     </>
   );
   return (

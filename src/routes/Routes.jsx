@@ -13,6 +13,12 @@ import PrivateRoute from "./PrivateRoute";
 import Payment from "../pages/Dashboard/Payment/Payment";
 import EnrolledClasses from "../pages/Dashboard/EnrolledClasses/EnrolledClasses";
 import PaymentHistory from "../pages/Dashboard/PaymentHistory/PaymentHistory";
+import ManageClasses from "../pages/Dashboard/ManageClasses/ManageClasses";
+import ManageUsers from "../pages/Dashboard/ManageUsers/ManageUsers";
+import AdminRoute from "./AdminRoute";
+import InstructorRoute from "./InstructorRoute";
+import AddClass from "../pages/Dashboard/AddClass/AddClass";
+import MyClasses from "../pages/Dashboard/MyClasses/MyClasses";
 
 const router = createBrowserRouter([
   {
@@ -76,8 +82,40 @@ const router = createBrowserRouter([
       },
       {
         path: "paymenthistory",
-        element: <PaymentHistory></PaymentHistory>
-      }
+        element: <PaymentHistory></PaymentHistory>,
+      },
+      {
+        path: "manageclasses",
+        element: (
+          <AdminRoute>
+            <ManageClasses></ManageClasses>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "manageusers",
+        element: (
+          <AdminRoute>
+            <ManageUsers></ManageUsers>
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "addaclass",
+        element: (
+          <InstructorRoute>
+            <AddClass></AddClass>
+          </InstructorRoute>
+        ),
+      },
+      {
+        path: "myclasses",
+        element: (
+          <InstructorRoute>
+            <MyClasses></MyClasses>
+          </InstructorRoute>
+        ),
+      },
     ],
   },
 ]);
