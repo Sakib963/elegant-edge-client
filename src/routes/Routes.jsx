@@ -10,6 +10,7 @@ import Instructors from "../pages/Instructors/Instructors";
 import Classes from "../pages/Classes/Classes";
 import SingleInstructor from "../pages/SingleInstructor/SingleInstructor";
 import PrivateRoute from "./PrivateRoute";
+import Payment from "../pages/Dashboard/Payment/Payment";
 
 const router = createBrowserRouter([
   {
@@ -61,6 +62,12 @@ const router = createBrowserRouter([
         path: "selectedclasses",
         element: <SelectedClasses></SelectedClasses>,
       },
+      {
+        path: 'payment/:id',
+        element: <Payment></Payment>,
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/selectclass/${params.id}`),
+      }
     ],
   },
 ]);
