@@ -1,9 +1,12 @@
+import { useContext } from "react";
 import CompanyLogo from "../../../components/CompanyLogo";
 import { BsFacebook, BsInstagram, BsYoutube } from "react-icons/bs";
+import { ThemeContext } from "../../../providers/ThemeContext";
 
 const Footer = () => {
+  const {theme} = useContext(ThemeContext);
   return (
-    <div className="pt-10">
+    <div className={theme === 'light' ? "pt-10": "pt-10 text-white"}>
       <div className="divider"></div>
       <div>
       <div className="grid lg:grid-cols-4 gap-4 px-10 py-5">

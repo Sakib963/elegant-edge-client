@@ -8,6 +8,7 @@ import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import SocialLogin from "../../components/SocialLogin";
+import { ThemeContext } from "../../providers/ThemeContext";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -18,6 +19,7 @@ const Login = () => {
   const [wrongPasswordError, setWrongPasswordError] = useState(false);
   const [notFoundError, setNotFoundError] = useState(false);
   const [inputType, setInputType] = useState("password");
+  const { theme } = useContext(ThemeContext);
   /* Handling See Password */
   const handleToggle = () => {
     if (open == 0) {
@@ -62,7 +64,13 @@ const Login = () => {
   };
 
   return (
-    <div className="grid lg:grid-cols-2 gap-4 pt-36">
+    <div
+      className={
+        theme === "light"
+          ? "grid lg:grid-cols-2 gap-4 pt-36"
+          : "grid lg:grid-cols-2 gap-4 pt-36 text-white"
+      }
+    >
       <Helmet>
         <title>Login | Elegant Edge Fashion School</title>
       </Helmet>
@@ -154,7 +162,13 @@ const Login = () => {
               </p>
             )}
           </div>
-          <button className="flex gap-2 justify-center items-center bg-[#CDC7F8] px-3 py-3 font-semibold rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:bg-[#A69BFB] duration-300 w-full">
+          <button
+            className={
+              theme === "light"
+                ? "flex gap-2 justify-center items-center bg-[#CDC7F8] px-3 py-3 font-semibold rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:bg-[#A69BFB] duration-300 w-full"
+                : "flex gap-2 justify-center items-center bg-[#CDC7F8] px-3 py-3 font-semibold rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:bg-[#A69BFB] duration-300 w-full text-black"
+            }
+          >
             <BiLogIn className="text-2xl" />
             Submit
           </button>

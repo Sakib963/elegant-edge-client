@@ -9,8 +9,10 @@ import useEnrolledClass from "../../../hooks/useEnrolledClass";
 import { AiOutlineHolder } from "react-icons/ai";
 import useAdmin from "../../../hooks/useAdmin";
 import useInstructor from "../../../hooks/useInstructor";
+import { ThemeContext } from "../../../providers/ThemeContext";
 
 const ClassesCard = ({ singleClass }) => {
+  const { theme } = useContext(ThemeContext);
   const {
     _id,
     image,
@@ -28,7 +30,7 @@ const ClassesCard = ({ singleClass }) => {
   const [enrolledClass, enrolledRefetch] = useEnrolledClass();
 
   const [isAdmin] = useAdmin();
-  const [isInstructor] = useInstructor(); 
+  const [isInstructor] = useInstructor();
 
   const selected = selectedClass.find((item) => item.classID === _id);
   const seatNotEmpty = available_seats === 0;
@@ -105,9 +107,15 @@ const ClassesCard = ({ singleClass }) => {
         <div className="flex justify-center">
           <Link>
             <button
-              disabled={selected || seatNotEmpty || enrolled || isAdmin || isInstructor}
+              disabled={
+                selected || seatNotEmpty || enrolled || isAdmin || isInstructor
+              }
               onClick={handleSelectClass}
-              className="flex gap-2 items-center border px-3 py-2 font-semibold rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-[#CDC7F8] duration-300"
+              className={
+                theme === "light"
+                  ? "flex gap-2 items-center border px-3 py-2 font-semibold rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-[#CDC7F8] duration-300"
+                  : "flex gap-2 items-center border px-3 py-2 font-semibold rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:bg-[#CDC7F8] duration-300 text-black"
+              }
             >
               {enrolled ? (
                 <MdDownloadDone className="text-2xl" />

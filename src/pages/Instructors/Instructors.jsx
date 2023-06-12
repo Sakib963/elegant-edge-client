@@ -4,10 +4,13 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useState } from "react";
 import InstructorDetailsCard from "./InstructorDetailsCard";
 import { useEffect } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../../providers/ThemeContext";
 
 const Instructors = () => {
   const [axiosSecure] = useAxiosSecure();
   const [instructors, setInstructors] = useState([]);
+  const {theme} = useContext(ThemeContext)
 
   useEffect(() => {
     axiosSecure
@@ -21,7 +24,7 @@ const Instructors = () => {
   }, []);
 
   return (
-    <div className="pt-36 mx-10 lg:mx-0">
+    <div className={theme === 'light' ? "pt-36 mx-10 lg:mx-0" : "pt-36 mx-10 lg:mx-0 text-white"}>
       <div className="grid lg:grid-cols-2 gap-5 lg:w-3/4 lg:mx-auto mt-10">
         <div className="flex items-center">
           <div className="space-y-3">

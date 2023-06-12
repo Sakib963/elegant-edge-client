@@ -4,10 +4,13 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useEffect } from "react";
 import classBG from '../../assets/images/classes-bg.svg'
 import ClassesCard from "../Home/PopularClasses/ClassesCard";
+import { useContext } from "react";
+import { ThemeContext } from "../../providers/ThemeContext";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
   const [axiosSecure] = useAxiosSecure();
+  const {theme} = useContext(ThemeContext);
   useEffect(() => {
     axiosSecure
       .get("/classes")
@@ -19,7 +22,7 @@ const Classes = () => {
       });
   }, []);
   return (
-    <div className="pt-36 mx-10 lg:mx-0">
+    <div className={theme === 'light' ? "pt-36 mx-10 lg:mx-0": "pt-36 mx-10 lg:mx-0 text-white"}>
       <div className="grid lg:grid-cols-2 gap-5 lg:w-3/4 lg:mx-auto mt-10">
         <div className="flex items-center">
           <div className="space-y-3">

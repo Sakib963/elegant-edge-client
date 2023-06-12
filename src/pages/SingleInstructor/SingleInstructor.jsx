@@ -4,11 +4,14 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { useState } from "react";
 import instructorBG from "../../assets/images/instructor-bg.svg";
 import ClassesCard from "../Home/PopularClasses/ClassesCard";
+import { useContext } from "react";
+import { ThemeContext } from "../../providers/ThemeContext";
 
 const SingleInstructor = () => {
   const { name, image, email, classes } = useLoaderData();
   const [axiosSecure] = useAxiosSecure();
   const [classesByInstructor, setClassesByInstructor] = useState([]);
+  const {theme} = useContext(ThemeContext);
 
   useEffect(() => {
     axiosSecure
@@ -21,7 +24,7 @@ const SingleInstructor = () => {
       });
   }, []);
   return (
-    <div className="mx-10 pt-36 space-y-5">
+    <div className={theme === 'light' ? "mx-10 pt-36 space-y-5": "mx-10 pt-36 space-y-5 text-white"}>
       <div className="grid lg:grid-cols-2 gap-5">
         <div className="text-center space-y-3">
           <img src={image} alt="" className="rounded-md mx-auto" />

@@ -4,6 +4,7 @@ import { BiErrorCircle, BiLogIn } from "react-icons/bi";
 import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
+import { ThemeContext } from "../../../providers/ThemeContext";
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
@@ -16,6 +17,8 @@ const AddClass = () => {
 
   const [axiosSecure] = useAxiosSecure();
 
+  const { theme } = useContext(ThemeContext);
+
   const onSubmit = (data) => {
     const classData = {
       name: data.name,
@@ -25,28 +28,34 @@ const AddClass = () => {
       available_seats: parseInt(data.available_seats),
       price: parseInt(data.price),
       total_students: 0,
-      status: "pending"
-    }
+      status: "pending",
+    };
     console.log(classData);
 
-    axiosSecure.post('/createClass', classData)
-    .then(() => {
-      Swal.fire({
-        position: "top-end",
-        icon: "success",
-        title: "Class Added Successfully.",
-        showConfirmButton: false,
-        timer: 1500,
+    axiosSecure
+      .post("/createClass", classData)
+      .then(() => {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title: "Class Added Successfully.",
+          showConfirmButton: false,
+          timer: 1500,
+        });
+        reset();
+      })
+      .catch((error) => {
+        console.log(error);
       });
-      reset();
-    })
-    .catch(error => {
-      console.log(error)
-    })
-
   };
   return (
-    <div className="text-center mt-20 lg:mt-10">
+    <div
+      className={
+        theme === "light"
+          ? "text-center mt-20 lg:mt-10"
+          : "text-center mt-20 lg:mt-10 text-white"
+      }
+    >
       <h3 className="text-2xl lg:text-3xl font-bold">Add A Class</h3>
       <form
         onSubmit={handleSubmit(onSubmit)}

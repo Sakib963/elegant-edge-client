@@ -28,6 +28,7 @@ const CustomClasses = () => {
                 type="email"
                 name="email"
                 id="email"
+                placeholder="Your Email"
                 className="bg-white w-full p-2 rounded-md text-black"
               />
             </div>

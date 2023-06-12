@@ -2,10 +2,13 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useState } from "react";
 import InstructorCard from "./InstructorCard";
 import { useEffect } from "react";
+import { useContext } from "react";
+import { ThemeContext } from "../../../providers/ThemeContext";
 
 const PopularInstructors = () => {
   const [axiosSecure] = useAxiosSecure();
   const [instructors, setInstructors] = useState([]);
+  const { theme } = useContext(ThemeContext);
   useEffect(() => {
     axiosSecure
       .get("/instructors")
@@ -18,7 +21,9 @@ const PopularInstructors = () => {
   }, []);
 
   return (
-    <div className="my-20 px-10">
+    <div
+      className={theme === "light" ? "my-20 px-10" : "my-20 px-10 text-white"}
+    >
       <div className="text-center space-y-3">
         <h3 className="text-4xl font-bold">World Class Instructors</h3>
         <p className="font-semibold lg:w-2/4 mx-auto">
