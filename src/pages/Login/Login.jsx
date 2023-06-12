@@ -15,6 +15,8 @@ const Login = () => {
   const location = useLocation();
   const from = location.state?.from?.pathname || "/";
   const [open, setOpen] = useState(0);
+  const [wrongPasswordError, setWrongPasswordError] = useState(false);
+  const [notFoundError, setNotFoundError] = useState(false);
   const [inputType, setInputType] = useState("password");
   /* Handling See Password */
   const handleToggle = () => {
@@ -49,7 +51,13 @@ const Login = () => {
         reset();
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.message);
+        if(error.message === "Firebase: Error (auth/wrong-password)."){
+          setWrongPasswordError(true)
+        }
+        if(error.message === "Firebase: Error (auth/user-not-found)."){
+          setNotFoundError(true)
+        }
       });
   };
 
@@ -133,6 +141,18 @@ const Login = () => {
                 character.
               </p>
             )}
+            {
+              wrongPasswordError && <p className="text-red-600 flex items-baseline gap-1">
+              <BiErrorCircle />
+              Wrong Password.
+            </p>
+            }
+            {
+              notFoundError && <p className="text-red-600 flex items-baseline gap-1">
+              <BiErrorCircle />
+              User Not Found.
+            </p>
+            }
           </div>
           <button className="flex gap-2 justify-center items-center bg-[#CDC7F8] px-3 py-3 font-semibold rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:bg-[#A69BFB] duration-300 w-full">
             <BiLogIn className="text-2xl" />

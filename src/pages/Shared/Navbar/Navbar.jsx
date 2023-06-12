@@ -13,6 +13,7 @@ const Navbar = () => {
   const { user, logOut } = useContext(AuthContext);
   const [isAdmin] = useAdmin();
   const [isInstructor] = useInstructor();
+  console.log(user)
   const handleLogout = () => {
     logOut()
       .then(() => {

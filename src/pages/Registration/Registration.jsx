@@ -15,6 +15,7 @@ const Registration = () => {
   const [retypeOpen, setRetypeOpen] = useState(0);
   const [retypeInputType, setRetypeInputType] = useState("password");
   const [notMatchError, setNotMatchError] = useState(1);
+  const [emailError, setEmailError] = useState(false);
 
   const navigate = useNavigate();
   const { createUser, updateUserProfile } = useContext(AuthContext);
@@ -61,12 +62,12 @@ const Registration = () => {
 
     createUser(data.email, data.password)
       .then(() => {
-
         updateUserProfile(data.name, data.photo)
           .then(() => {
             const savedUser = {
               name: data.name,
               email: data.email,
+              photo: data.photo,
               role: "student",
             };
             fetch("http://localhost:5000/users", {
@@ -95,7 +96,10 @@ const Registration = () => {
           });
       })
       .catch((error) => {
-        console.log(error);
+        console.log(error.message);
+        if (error.message === "Firebase: Error (auth/email-already-in-use).") {
+          setEmailError(true);
+        }
       });
   };
   return (
@@ -144,6 +148,11 @@ const Registration = () => {
             {errors.email && (
               <span className="text-red-600 flex items-center gap-1">
                 <BiErrorCircle /> This field is required
+              </span>
+            )}
+            {emailError && (
+              <span className="text-red-600 flex items-center gap-1">
+                <BiErrorCircle /> Email Already in use.
               </span>
             )}
           </div>

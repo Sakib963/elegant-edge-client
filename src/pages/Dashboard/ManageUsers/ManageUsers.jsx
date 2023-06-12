@@ -29,8 +29,18 @@ const ManageUsers = () => {
       });
   };
   const handleMakeInstructor = (user) => {
+    console.log(user)
+    const instructor = {
+      name: user.name,
+      image: user.photo,
+      email: user.email,
+      classes: 0,
+    };
+    console.log(instructor)
     fetch(`http://localhost:5000/users/instructor/${user._id}`, {
       method: "PATCH",
+      headers: {"content-type": "application/json"},
+      body: JSON.stringify(instructor)
     })
       .then((res) => res.json())
       .then((data) => {
