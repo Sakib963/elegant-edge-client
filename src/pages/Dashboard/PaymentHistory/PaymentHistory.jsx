@@ -1,12 +1,16 @@
 import { BiErrorCircle } from "react-icons/bi";
 import usePaidClass from "../../../hooks/usePaidClass";
 import PaidClassRow from "./PaidClassRow";
+import { Helmet } from "react-helmet-async";
 
 const PaymentHistory = () => {
   const [paidClass] = usePaidClass();
   const emptyClass = paidClass.length === 0;
   return (
     <div className="text-center mt-20 lg:mt-10">
+      <Helmet>
+                <title>Payment History | Elegant Edge Fashion School</title>
+            </Helmet>
       <h3 className="text-2xl lg:text-3xl font-bold">Payment History</h3>
       <div className="mt-10 lg:w-3/4 lg:mx-auto mx-10">
         <table className="table table-zebra">

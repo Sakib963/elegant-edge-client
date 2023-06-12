@@ -3,6 +3,7 @@ import { Link, useLoaderData } from "react-router-dom";
 import CheckoutForm from "./CheckoutForm";
 import { loadStripe } from "@stripe/stripe-js";
 import { Elements } from "@stripe/react-stripe-js";
+import { Helmet } from "react-helmet-async";
 
 // TODO: PROVIDE PUBLISHABLE KEY
 const stripePromise = loadStripe(import.meta.env.VITE_PAYMENT_GATEWAY_PK);
@@ -14,6 +15,9 @@ const Payment = () => {
 
   return (
     <div className="text-center mt-20 lg:mt-10">
+      <Helmet>
+                <title>Payment | Elegant Edge Fashion School</title>
+            </Helmet>
       <h3 className="text-2xl lg:text-3xl font-bold">Process Payment</h3>
       <div className="mt-10 text-start mx-10 space-y-3 grid lg:grid-cols-2">
         <div className="space-y-3">

@@ -5,6 +5,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import Swal from "sweetalert2";
 import { ThemeContext } from "../../../providers/ThemeContext";
+import { Helmet } from "react-helmet-async";
 
 const AddClass = () => {
   const { user } = useContext(AuthContext);
@@ -56,6 +57,9 @@ const AddClass = () => {
           : "text-center mt-20 lg:mt-10 text-white"
       }
     >
+      <Helmet>
+                <title>Add Class | Elegant Edge Fashion School</title>
+            </Helmet>
       <h3 className="text-2xl lg:text-3xl font-bold">Add A Class</h3>
       <form
         onSubmit={handleSubmit(onSubmit)}

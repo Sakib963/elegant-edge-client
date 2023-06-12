@@ -6,6 +6,7 @@ import classBG from '../../assets/images/classes-bg.svg'
 import ClassesCard from "../Home/PopularClasses/ClassesCard";
 import { useContext } from "react";
 import { ThemeContext } from "../../providers/ThemeContext";
+import { Helmet } from "react-helmet-async";
 
 const Classes = () => {
   const [classes, setClasses] = useState([]);
@@ -23,6 +24,9 @@ const Classes = () => {
   }, []);
   return (
     <div className={theme === 'light' ? "pt-36 mx-10 lg:mx-0": "pt-36 mx-10 lg:mx-0 text-white"}>
+      <Helmet>
+                <title>Classes | Elegant Edge Fashion School</title>
+            </Helmet>
       <div className="grid lg:grid-cols-2 gap-5 lg:w-3/4 lg:mx-auto mt-10">
         <div className="flex items-center">
           <div className="space-y-3">

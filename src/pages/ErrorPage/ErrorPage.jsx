@@ -4,6 +4,7 @@ import animationData from "../../assets/lottie/error-doodle-animation.json";
 import Lottie from "react-lottie";
 import { useContext } from "react";
 import { ThemeContext } from "../../providers/ThemeContext";
+import { Helmet } from "react-helmet-async";
 const ErrorPage = () => {
   const { theme } = useContext(ThemeContext);
   const defaultOptions = {
@@ -22,6 +23,9 @@ const ErrorPage = () => {
           : "flex justify-center items-center min-h-screen text-white"
       }
     >
+      <Helmet>
+                <title>Error | Elegant Edge Fashion School</title>
+            </Helmet>
       <div className="flex flex-col items-center">
         <Lottie options={defaultOptions} height={400} width={400} />
         <Link to={"/"}>

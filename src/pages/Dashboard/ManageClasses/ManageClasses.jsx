@@ -2,6 +2,7 @@ import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import ManageClassRow from "./ManageClassRow";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet-async";
 
 const ManageClasses = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -71,6 +72,9 @@ const ManageClasses = () => {
 
   return (
     <div className="text-center mt-20 lg:mt-10">
+      <Helmet>
+                <title>Manage Class | Elegant Edge Fashion School</title>
+            </Helmet>
       <h3 className="text-2xl lg:text-3xl font-bold">Manage Classes</h3>
       <div className="mt-10 lg:w-3/4 lg:mx-auto mx-10">
         <div className="overflow-x-auto">

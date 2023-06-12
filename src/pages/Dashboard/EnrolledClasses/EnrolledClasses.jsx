@@ -1,6 +1,7 @@
 import ClassRow from "./ClassRow";
 import useEnrolledClass from "../../../hooks/useEnrolledClass";
 import { BiErrorCircle } from "react-icons/bi";
+import { Helmet } from "react-helmet-async";
 
 const EnrolledClasses = () => {
   const [enrolledClass] = useEnrolledClass();
@@ -9,6 +10,9 @@ const EnrolledClasses = () => {
 
   return (
     <div className="text-center mt-20 lg:mt-10">
+      <Helmet>
+                <title>Enrolled Class | Elegant Edge Fashion School</title>
+            </Helmet>
       <h3 className="text-2xl lg:text-3xl font-bold">Enrolled Classes</h3>
       <div className="mt-10 lg:w-3/4 lg:mx-auto mx-10">
         <table className="table w-full">

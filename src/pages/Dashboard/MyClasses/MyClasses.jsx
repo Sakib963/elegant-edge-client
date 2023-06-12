@@ -4,6 +4,7 @@ import MyClassRow from "./MyClassRow";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { useEffect } from "react";
+import { Helmet } from "react-helmet-async";
 
 const MyClasses = () => {
   const { user } = useContext(AuthContext);
@@ -21,6 +22,9 @@ const MyClasses = () => {
   }, []);
   return (
     <div className="text-center mt-20 lg:mt-10">
+      <Helmet>
+                <title>My Classes | Elegant Edge Fashion School</title>
+            </Helmet>
       <h3 className="text-2xl lg:text-3xl font-bold">My Classes</h3>
       <div className="mt-10 lg:w-3/4 lg:mx-auto mx-10">
         <div className="overflow-x-auto">

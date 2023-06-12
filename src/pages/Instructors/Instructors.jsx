@@ -6,6 +6,7 @@ import InstructorDetailsCard from "./InstructorDetailsCard";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { ThemeContext } from "../../providers/ThemeContext";
+import { Helmet } from "react-helmet-async";
 
 const Instructors = () => {
   const [axiosSecure] = useAxiosSecure();
@@ -25,6 +26,9 @@ const Instructors = () => {
 
   return (
     <div className={theme === 'light' ? "pt-36 mx-10 lg:mx-0" : "pt-36 mx-10 lg:mx-0 text-white"}>
+      <Helmet>
+                <title>Instructor | Elegant Edge Fashion School</title>
+            </Helmet>
       <div className="grid lg:grid-cols-2 gap-5 lg:w-3/4 lg:mx-auto mt-10">
         <div className="flex items-center">
           <div className="space-y-3">

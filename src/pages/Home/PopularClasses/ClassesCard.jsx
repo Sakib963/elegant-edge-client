@@ -47,7 +47,7 @@ const ClassesCard = ({ singleClass }) => {
         image,
         userEmail: user.email,
       };
-      fetch("http://localhost:5000/selectclass", {
+      fetch("https://elegant-edge-server.vercel.app/selectclass", {
         method: "POST",
         headers: { "content-type": "application/json" },
         body: JSON.stringify(selectedClass),
@@ -101,7 +101,7 @@ const ClassesCard = ({ singleClass }) => {
           <p>Total Students: {total_students}</p>
         </div>
         <p className="font-semibold pb-5">
-          Price: <span>{price}</span>
+          Price: $<span>{price}</span>
         </p>
 
         <div className="flex justify-center">

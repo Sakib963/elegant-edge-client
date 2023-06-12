@@ -5,6 +5,7 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useForm } from "react-hook-form";
 import { useContext } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
+import { Helmet } from "react-helmet-async";
 
 const UpdateClass = () => {
   const classData = useLoaderData();
@@ -54,6 +55,9 @@ const UpdateClass = () => {
 
   return (
     <div className="text-center mt-20 lg:mt-10">
+      <Helmet>
+                <title>Update Class | Elegant Edge Fashion School</title>
+            </Helmet>
       <h3 className="text-2xl lg:text-3xl font-bold">Update Class</h3>
       <div className="mt-10 lg:w-3/4 lg:mx-auto mx-10">
         <form

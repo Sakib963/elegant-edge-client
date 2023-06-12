@@ -2,6 +2,7 @@ import Swal from "sweetalert2";
 import useSelectedClass from "../../../hooks/useSelectedClass";
 import TableRow from "./TableRow";
 import { BiErrorCircle } from "react-icons/bi";
+import { Helmet } from "react-helmet-async";
 
 const SelectedClasses = () => {
   const [selectedClass, refetch] = useSelectedClass();
@@ -17,7 +18,7 @@ const SelectedClasses = () => {
       confirmButtonText: "Delete",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/selectclass/${_id}`, {
+        fetch(`https://elegant-edge-server.vercel.app/selectclass/${_id}`, {
           method: "DELETE",
           headers: { "content-type": "application/json" },
         })
@@ -33,6 +34,9 @@ const SelectedClasses = () => {
   };
   return (
     <div className="text-center mt-20 lg:mt-10">
+      <Helmet>
+                <title>Selected Class | Elegant Edge Fashion School</title>
+            </Helmet>
       <h2 className="text-5xl font-semibold">My Selected Classes</h2>
       <div>
         <div className="overflow-x-auto mx-20 mt-10">

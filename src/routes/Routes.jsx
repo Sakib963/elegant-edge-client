@@ -51,7 +51,7 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/instructors/${params.id}`),
+          fetch(`https://elegant-edge-server.vercel.app/instructors/${params.id}`),
       },
       {
         path: "/classes",
@@ -75,7 +75,7 @@ const router = createBrowserRouter([
         path: "payment/:id",
         element: <Payment></Payment>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/selectclass/${params.id}`),
+          fetch(`https://elegant-edge-server.vercel.app/selectclass/${params.id}`),
       },
       {
         path: "enrolledclasses",
@@ -125,7 +125,7 @@ const router = createBrowserRouter([
           </InstructorRoute>
         ),
         loader: ({ params }) =>
-        fetch(`http://localhost:5000/myclasses/${params.id}`),
+        fetch(`https://elegant-edge-server.vercel.app/myclasses/${params.id}`),
       },
     ],
   },
