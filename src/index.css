@@ -29,3 +29,10 @@ body{
     color: #A69BFB;
     text-decoration: underline;
 }
+
+.custom-class{
+    background-image:
+    linear-gradient(to top, rgba(193, 211, 251, 0.259), rgba(0, 0, 0, 0.73)),
+    url('../src/assets/images/section-background.jpg');
+    background-size: cover;
+}
