@@ -1,4 +1,3 @@
-
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useState } from "react";
 import InstructorCard from "./InstructorCard";
@@ -16,7 +15,7 @@ const PopularInstructors = () => {
       .catch((error) => {
         console.log(error);
       });
-  },[]);
+  }, []);
 
   return (
     <div className="my-20 px-10">
@@ -27,14 +26,22 @@ const PopularInstructors = () => {
           the Most Popular Courses to Ignite Your Passion and Master Your Craft.
         </p>
       </div>
-      <div className="grid lg:grid-cols-3 gap-5 lg:w-3/4 mx-auto mt-10">
-        {instructors.map((instructor) => (
-          <InstructorCard
-            key={instructor._id}
-            instructor={instructor}
-          ></InstructorCard>
-        ))}
-      </div>
+      {instructors.length === 0 ? (
+        <>
+          <h3 className="text-2xl lg:text-3xl text-center mt-10 font-bold">
+            No Instructor Added.
+          </h3>
+        </>
+      ) : (
+        <div className="grid lg:grid-cols-3 gap-5 lg:w-3/4 mx-auto mt-10">
+          {instructors.map((instructor) => (
+            <InstructorCard
+              key={instructor._id}
+              instructor={instructor}
+            ></InstructorCard>
+          ))}
+        </div>
+      )}
     </div>
   );
 };

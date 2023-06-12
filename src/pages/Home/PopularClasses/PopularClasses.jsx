@@ -27,7 +27,8 @@ const PopularClasses = () => {
           the Latest Fashion Innovations.
         </p>
       </div>
-      <div className="grid lg:grid-cols-3 gap-5 lg:w-3/4 mx-auto mt-10">
+      {
+        classes.length === 0 ? <> <h3 className="text-2xl lg:text-3xl text-center mt-10 font-bold">No Class Added.</h3></> : <div className="grid lg:grid-cols-3 gap-5 lg:w-3/4 mx-auto mt-10">
         {classes.map((singleClass) => (
           <ClassesCard
             key={singleClass._id}
@@ -35,6 +36,8 @@ const PopularClasses = () => {
           ></ClassesCard>
         ))}
       </div>
+      }
+      
     </div>
   );
 };
