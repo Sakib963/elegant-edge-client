@@ -10,7 +10,7 @@ const PopularClasses = () => {
     axiosSecure
       .get("/classes")
       .then((res) => {
-        setClasses(res.data);
+        setClasses(res.data.slice(0, 6));
       })
       .catch((error) => {
         console.log(error);

@@ -2,7 +2,7 @@ import { BsFillSendCheckFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
 const InstructorDetailsCard = ({ instructor }) => {
-  const { _id, name, image, classes, email } = instructor;
+  const { _id, name, image, classes, email, total_students } = instructor;
   return (
     <div className="space-y-3 border shadow-xl shadow-[#CDC7F8] rounded-lg p-10">
       <img
@@ -13,7 +13,10 @@ const InstructorDetailsCard = ({ instructor }) => {
 
       <div className="space-y-2">
         <h3 className="text-2xl font-semibold">{name}</h3>
-        <p>Total Classes: {classes}</p>
+        <div className="lg:flex justify-between items-center">
+          <p>Total Classes: {classes}</p>
+          <p>Total Students: {total_students}</p>
+        </div>
         <p>Email: {email}</p>
 
         <div className="flex justify-center">

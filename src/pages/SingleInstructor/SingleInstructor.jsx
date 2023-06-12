@@ -38,7 +38,8 @@ const SingleInstructor = () => {
         <img src={instructorBG} alt="" />
       </div>
       <h3 className="pt-10 text-2xl lg:text-5xl font-semibold text-center">Classes of {name}</h3>
-      <div className="grid lg:grid-cols-3 pt-10 lg:mx-auto lg:w-3/4 col-span-3">
+      {
+        classesByInstructor.length === 0 ? <><h3 className="text-2xl lg:text-3xl font-semibold text-center">No Class Available</h3></> :<div className="grid lg:grid-cols-3 gap-4 pt-10 lg:mx-auto lg:w-3/4 col-span-3">
         {classesByInstructor.map((classByInstructor) => (
           <ClassesCard
             key={classByInstructor._id}
@@ -46,6 +47,8 @@ const SingleInstructor = () => {
           ></ClassesCard>
         ))}
       </div>
+      }
+      
     </div>
   );
 };

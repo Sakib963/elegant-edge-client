@@ -1,6 +1,5 @@
 import { useForm } from "react-hook-form";
 import { BiErrorCircle, BiLogIn } from "react-icons/bi";
-import { FcGoogle } from "react-icons/fc";
 import { Link, useNavigate } from "react-router-dom";
 import registrationPic from "../../assets/images/registration.svg";
 import { useContext, useState } from "react";
@@ -8,6 +7,7 @@ import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/SocialLogin";
 
 const Registration = () => {
   const [open, setOpen] = useState(0);
@@ -295,9 +295,7 @@ const Registration = () => {
             </Link>
           </p>
           <div className="divider"></div>
-          <div className="text-center">
-            <FcGoogle className="mx-auto text-5xl rounded-lg border-[1px] p-2 hover:bg-[#CDC7F8] cursor-pointer" />
-          </div>
+          <SocialLogin></SocialLogin>
         </form>
       </div>
       <div>

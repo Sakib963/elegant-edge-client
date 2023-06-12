@@ -1,20 +1,22 @@
 import { BsFillSendCheckFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
+import avatarIcon from "../../../assets/images/avatar-icon.png";
 
 const InstructorCard = ({ instructor }) => {
-  const { _id, name, image, classes } = instructor;
+  const { _id, name, image, classes, total_students } = instructor;
   return (
     <div className="space-y-3 border shadow-xl shadow-[#CDC7F8] rounded-lg p-10">
       <img
         className="mx-auto rounded-lg w-full"
-        src={image}
-        alt="Class Image"
+        src={image ? image : avatarIcon}
+        alt="Instructor Image"
       />
 
       <div className="space-y-2">
         <h3 className="text-2xl font-semibold">{name}</h3>
-        <div className="flex justify-between items-center">
+        <div className="lg:flex justify-between items-center">
           <p>Total Classes: {classes}</p>
+          <p>Total Students: {total_students}</p>
         </div>
 
         <div className="flex justify-center">

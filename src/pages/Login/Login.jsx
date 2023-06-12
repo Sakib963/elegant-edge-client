@@ -3,11 +3,11 @@ import loginPic from "../../assets/images/sign_up.svg";
 import { useForm } from "react-hook-form";
 import { AiFillEye, AiFillEyeInvisible } from "react-icons/ai";
 import { BiErrorCircle, BiLogIn } from "react-icons/bi";
-import { FcGoogle } from "react-icons/fc";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
+import SocialLogin from "../../components/SocialLogin";
 
 const Login = () => {
   const { loginUser } = useContext(AuthContext);
@@ -52,11 +52,11 @@ const Login = () => {
       })
       .catch((error) => {
         console.log(error.message);
-        if(error.message === "Firebase: Error (auth/wrong-password)."){
-          setWrongPasswordError(true)
+        if (error.message === "Firebase: Error (auth/wrong-password).") {
+          setWrongPasswordError(true);
         }
-        if(error.message === "Firebase: Error (auth/user-not-found)."){
-          setNotFoundError(true)
+        if (error.message === "Firebase: Error (auth/user-not-found).") {
+          setNotFoundError(true);
         }
       });
   };
@@ -141,18 +141,18 @@ const Login = () => {
                 character.
               </p>
             )}
-            {
-              wrongPasswordError && <p className="text-red-600 flex items-baseline gap-1">
-              <BiErrorCircle />
-              Wrong Password.
-            </p>
-            }
-            {
-              notFoundError && <p className="text-red-600 flex items-baseline gap-1">
-              <BiErrorCircle />
-              User Not Found.
-            </p>
-            }
+            {wrongPasswordError && (
+              <p className="text-red-600 flex items-baseline gap-1">
+                <BiErrorCircle />
+                Wrong Password.
+              </p>
+            )}
+            {notFoundError && (
+              <p className="text-red-600 flex items-baseline gap-1">
+                <BiErrorCircle />
+                User Not Found.
+              </p>
+            )}
           </div>
           <button className="flex gap-2 justify-center items-center bg-[#CDC7F8] px-3 py-3 font-semibold rounded-md transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-105 hover:bg-[#A69BFB] duration-300 w-full">
             <BiLogIn className="text-2xl" />
@@ -165,9 +165,7 @@ const Login = () => {
             </Link>
           </p>
           <div className="divider"></div>
-          <div className="text-center">
-            <FcGoogle className="mx-auto text-5xl rounded-lg border-[1px] p-2 hover:bg-[#CDC7F8] cursor-pointer" />
-          </div>
+          <SocialLogin></SocialLogin>
         </form>
       </div>
       <div>

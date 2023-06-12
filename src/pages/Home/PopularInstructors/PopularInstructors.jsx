@@ -10,7 +10,7 @@ const PopularInstructors = () => {
     axiosSecure
       .get("/instructors")
       .then((res) => {
-        setInstructors(res.data);
+        setInstructors(res.data.slice(0, 6));
       })
       .catch((error) => {
         console.log(error);

@@ -10,15 +10,15 @@ const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
 
   useEffect(() => {
-    axiosSecure.get('/instructors')
-  .then(res => {
-    setInstructors(res.data)
-  })
-  .catch(error => {
-    console.log(error)
-  });
-
-  }, [])
+    axiosSecure
+      .get("/instructors")
+      .then((res) => {
+        setInstructors(res.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
 
   return (
     <div className="pt-36 mx-10 lg:mx-0">
@@ -60,11 +60,16 @@ const Instructors = () => {
           className="mx-auto"
         />
       </div>
-      <h3 className="lg:text-5xl text-3xl text-center mt-20 mb-10 font-semibold">Meet Our Fashion Experts</h3>
+      <h3 className="lg:text-5xl text-3xl text-center mt-20 mb-10 font-semibold">
+        Meet Our Fashion Experts
+      </h3>
       <div className="grid lg:grid-cols-3 gap-5 lg:w-3/4 mx-auto mt-10">
-        {
-          instructors.map(instructor => <InstructorDetailsCard key={instructor._id} instructor = {instructor}></InstructorDetailsCard>)
-        }
+        {instructors.map((instructor) => (
+          <InstructorDetailsCard
+            key={instructor._id}
+            instructor={instructor}
+          ></InstructorDetailsCard>
+        ))}
       </div>
     </div>
   );
